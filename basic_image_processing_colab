@@ -1,0 +1,65 @@
+#Connect to google drive
+from google.colab import drive 
+drive.mount('/content/drive')
+
+
+#change directory
+%cd /content/drive/My\ Drive
+
+
+#print name of current/working directory
+!pwd
+
+
+#creat a directory
+!mkdir linuxsiam1 #Your directory's name
+
+!ls
+
+
+#change to your directory
+%cd linuxsiam1/
+
+
+#import files and IPythonDisplay
+from google.colab import files
+from IPython.display import Image
+
+
+#Upload file(s) for Image Processing Practice
+uploaded=files.upload()
+
+
+#Install Pillow(PIL)
+!pip install pillow
+
+
+from PIL import Image
+im=Image.open('lena.jpg')
+im
+
+
+#Conver image
+convert_image=im.convert("L")
+convert_image
+
+
+#creat box to crop image
+box = (100, 100, 400, 400)
+region = im.crop(box)
+
+#crop and rotate image
+region = region.transpose(Image.ROTATE_180)
+im.paste(region, box)
+im
+
+
+#Resize and rotate image
+resize_image = convert_image.resize((128, 128))
+resize_image = convert_image.rotate(90) # degrees counter-clockwise
+
+resize_image
+
+
+#Pillow (PIL) tutorial
+https://pillow.readthedocs.io/en/3.0....
